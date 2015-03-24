@@ -1,4 +1,4 @@
-module.exports = {
+ module.exports = {
 	Zone: function(n, key) {
 		this.revealed = false;
 		this.hasMine = false;
