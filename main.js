@@ -92,13 +92,13 @@ var createBoard = function(n) {
 };
 
 var setRandomMines = function(board, n, size) {
-
 	for (var i = 0; i<size; i++) {
 		var random = Math.floor(Math.random()*n*n)+1;
 		if (board[random].mines !== -1) {
 			board[random].setMine();
-			var randomNeighbors = neighbors(listToGrid(random, n));
-			console.log("Random Neighbors: ",randomNeighbors);
+			var coords = listToGrid(random, n);
+			var x = coords[0], y = coords[1];
+			var randomNeighbors = neighbors(x,y,n);
 			for (var j = 0; j<randomNeighbors.length; j++) {
 				var neighbor = randomNeighbors[j];
 				board[neighbor].adjacentMines();
@@ -106,6 +106,20 @@ var setRandomMines = function(board, n, size) {
 		} else {i--;}
 	}
 };
+
+var canvas = document.getElementById('minesweeper');
+console.log(canvas);
+var context = canvas.getContext("2d");
+var width = canvas.width;
+var height = canvas.height;
+var cellSize = 23;
+console.log(width, height);
+context.fillStyle = "grey";
+context.fillRect(0,0,400,400);
+context.strokeStyle = "black";
+context.strokeRect(1,1,cellSize,cellSize);
+context.strokeRect(1+cellSize,1,cellSize,cellSize);
+context.strokeRect(1,1+cellSize,cellSize,cellSize);
 
 var tests = function() {
 	console.log(gridToList(2,2,4)); // Should return 6
