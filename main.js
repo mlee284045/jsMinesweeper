@@ -108,18 +108,59 @@ var setRandomMines = function(board, n, size) {
 };
 
 var canvas = document.getElementById('minesweeper');
-console.log(canvas);
+console.log(canvas.width);
+console.log("changed canvas test");
+document.getElementById('minesweeper').width = 600;
+console.log(canvas.width);
 var context = canvas.getContext("2d");
+
 var width = canvas.width;
 var height = canvas.height;
-var cellSize = 23;
-console.log(width, height);
+var cellSize = 50, n = 8;
+// console.log(width, height);
 context.fillStyle = "grey";
 context.fillRect(0,0,400,400);
 context.strokeStyle = "black";
-context.strokeRect(1,1,cellSize,cellSize);
-context.strokeRect(1+cellSize,1,cellSize,cellSize);
-context.strokeRect(1,1+cellSize,cellSize,cellSize);
+for (var i = 0; i<n; i++) {
+	context.beginPath();
+	context.moveTo(i*cellSize,0);
+	context.lineTo(i*cellSize,400);
+	context.closePath();
+	context.stroke();
+	context.beginPath();
+	context.moveTo(0,i*cellSize);
+	context.lineTo(400,i*cellSize);
+	context.closePath();
+	context.stroke();
+	// for (var j = 0; j<n; j++){
+	// 	context.strokeRect(1+cellSize*i,1+cellSize*j,cellSize,cellSize);
+	// }
+}
+context.strokeStyle = "red";
+context.lineWidth = 2;
+context.beginPath();
+context.moveTo(20,0);
+context.lineTo(20,400);
+context.closePath();
+context.stroke();
+
+context.lineWidth = 10;
+context.beginPath();
+context.moveTo(10,0);
+context.lineTo(500,400);
+context.closePath();
+context.stroke();
+
+// context.line
+context.strokeRect(50,50,50,50);
+
+context.fillStyle = "yellow";
+context.fillRect(250,250,50,50);
+
+
+
+
+// canvas.onClick(console.log("Clicked!"));
 
 var tests = function() {
 	console.log(gridToList(2,2,4)); // Should return 6
